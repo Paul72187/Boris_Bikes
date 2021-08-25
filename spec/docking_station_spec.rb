@@ -5,11 +5,14 @@ describe DockingStation do
   end
 
 describe DockingStation do
-  it 'releases a bike' do
-      expect(DockingStation(release_bike)).to eq'Bike Released'
-  end 
   
   it 'expects bike to be working' do
-      expect(Bike(working?)).to eq'Bike is working'
+      bike = subject.release_bike
+      expect(bike).to be_working
+  end
+  it 'expects a bike to be docked' do
+    #expect(dock_bike("bike")).to eq true
+    bike = subject.dock_bike("Bike")
+    expect(bike).to eq true
   end
 end
