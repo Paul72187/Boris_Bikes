@@ -5,55 +5,28 @@ class DockingStation
   attr_reader :release_bike, :dock_bike
   
     def initialize
-      @docked_bikes = ["x","x","x","x","x","x","x","x","x"]
+      @docked_bikes = []
       @station_capacity = 10
     end
 
     def check_bike_status
       bike_status = Bike.new
-      bike_status_message = bike_status.working?
-      puts bike_status_message
-
-      if bike_status_message == "This Bike is Working"
-        bike_message = "This Bike is Working"
-      else
-        bike_message = "no good"
-      end
-      bike_message
-
+      bike_status.working?
     end
 
     def release_bike
-      # bike_status = Bike.new
-      if @docked_bikes.empty?
-        puts "There is a bike in the station"
-      else         
-        raise "No bikes in station"
-      end
+      @docked_bikes.empty?
     end
 
-    def dock_bike(bike)
-      bike_count = @docked_bikes.count   
-      
-      puts bike_count
-      
-      if bike_count <= @station_capacity
+    def dock_bike(bike)               
+      if @docked_bikes.count <= @station_capacity
         @docked_bikes.push(bike)
-        puts @docked_bikes.count
       else
-        raise "this station is at capacity #{@capacity}"
-      end      
-      true
+        raise "this station is at capacity"
+      end
     end
 
-    def count_bikes
-      
-      bike_count = @docked_bikes.count      
-      
-      if bike_count <= @station_capacity
-        @docked_bikes.count
-      else
-        raise "error"
-      end
+    def count_bikes      
+      @docked_bikes.count
     end 
 end
